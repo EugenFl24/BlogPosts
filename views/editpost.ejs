@@ -1,0 +1,27 @@
+<!-- editpost.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Post</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Incluir el archivo parcial para el encabezado -->
+    <%- include("partials/header.ejs") %>
+
+    <h1>Editar Post</h1>
+
+    <form action="/updatepost" method="POST">
+        <input type="hidden" name="postIndex" value="<%= postIndex %>">
+        <label for="newPostContent">Contenido del post:</label>
+        <input type="text" id="newPostContent" name="newPostContent" value="<%= postContent %>">
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <!-- Incluir el archivo parcial para el pie de página -->
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

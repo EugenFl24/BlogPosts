@@ -1,0 +1,53 @@
+<!-- blogposts.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 1 blog</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Incluir el archivo parcial para el encabezado -->
+    <%- include("partials/header.ejs") %>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Posts Eugene</h1>
+
+        <!-- Resto del contenido de la página -->
+        <!-- Formulario para agregar posts -->
+        <form action="/addpost" method="POST" class="mb-4">
+            <div class="input-group">
+                <input type="text" id="postContent" name="postContent" class="form-control" placeholder="Nuevo post...">
+                <button type="submit" class="btn btn-primary">Agregar Post</button>
+            </div>
+        </form>
+
+        <!-- Mostrar los posts existentes -->
+        <h2>Posts:</h2>
+        <ul class="list-group">
+            <% posts.forEach((post, index) => { %>
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <%= post %>
+                        <div class="post-actions">
+                            <form action="/editpost" method="GET">
+                                <input type="hidden" name="postIndex" value="<%= index %>">
+                                <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                            </form>
+                            <form action="/deletepost" method="POST">
+                                <input type="hidden" name="postIndex" value="<%= index %>">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <!-- Incluir el archivo parcial para el pie de página -->
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>
